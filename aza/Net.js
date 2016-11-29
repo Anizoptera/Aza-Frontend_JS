@@ -33,7 +33,7 @@ define(["jquery", "jquery/forms", "./Core"], function($, $$f, Aza)
 		}
 
 		opts = opts || {};
-		opts.method = opts.type || Net.METHOD_POST;
+		opts.method = opts.method || opts.type || Net.METHOD_POST;
 		opts.url = url || opts.url || location.href.replace(/\?.*/, "");
 		opts.timeout = opts.timeout || 10000;
 
