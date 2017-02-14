@@ -106,9 +106,9 @@ define(["jquery"], function($)
 		var special = combi.special,
 			code = e.which || e.keyCode;
 
-		if (combi.shift && !e.shiftKey
-			|| combi.ctrl && !e.ctrlKey && !e.metaKey
-			|| combi.alt && !e.altKey
+		if (combi.shift !== e.shiftKey
+			|| combi.ctrl !== (e.ctrlKey || e.metaKey)
+			|| combi.alt !== e.altKey
 		) return false;
 
 		if (special && (special.join ? $.inArray(code, special) < 0 : code !== special))
