@@ -1,0 +1,271 @@
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 11px/1.364 Verdana, Geneva, sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+.l-body {
+	margin: 0 auto;
+	padding: 20px 20px 50px;
+	max-width: 1180px;
+	background: #fff;
+}
+
+.l-header {
+	margin: 0 0 10px;
+	color: #fff;
+}
+.l-header-title {
+	padding: 1px 20px 0;
+	height: 50px;
+	font-size: 24px;
+	line-height: 46px;
+	font-weight: bold;
+	vertical-align: baseline;
+	text-shadow: 0 2px 0 #44576d;
+	background: #536980;
+	border-radius: 2px 2px 0 0;
+	cursor: default;
+}
+.l-header-title > span {
+	font-size: 18px;
+	font-weight: normal;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+.l-header-menu {
+	background: #62778d;
+	border-radius: 0 0 2px 2px;
+}
+.l-header-menuLeft,
+.l-header-menuRight {
+	padding: 10px 7px 7px 10px;
+}
+.l-header-menuLeft {
+	width: 1px;
+	white-space: nowrap;
+}
+.l-header-menuDivider {
+	width: 2px;
+	background: #536980;
+}
+.l-header-item {
+	display: inline-block;
+	margin: 0 3px 3px 0;
+	padding: 4px 10px 3px;
+	color: #fff;
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	border-radius: 2px;
+}
+.l-header-item:hover {
+	text-decoration: none;
+	background: #536980;
+}
+.l-header-item_active,
+.l-header-item_active:hover {
+	background: #44576d;
+}
+
+.l-info {
+	position: relative;
+	padding: 10px 20px 12px;
+	color: #777;
+	line-height: 17px;
+	background: #e6e6e6;
+	border-radius: 2px;
+}
+.l-info > span {
+	color: #444;
+}
+.l-info-result {
+	position: absolute;
+	display: none;
+	padding: 0 42px;
+	right: 12px;
+	top: 12px;
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: bold;
+	cursor: default;
+}
+.l-info-result > i {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 32px;
+	height: 32px;
+	background: url("unitjs-runner.png");
+}
+.l-info-result_passed {
+	color: #62778d;
+}
+.l-info-result_failed {
+	color: #b06b6b;
+}
+.l-info-result_passed > i {
+	background-position: left top;
+}
+.l-info-result_failed > i {
+	background-position: right top;
+}
+.l-body_passed .l-info-result_passed {
+	display: block;
+}
+.l-body_failed .l-info-result_failed {
+	display: block;
+}
+
+.l-content {
+	padding: 10px 0 0;
+}
+
+
+.e-caseTitle {
+	position: relative;
+	height: 32px;
+	opacity: .95;
+}
+.e-caseTitle-line {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 13px;
+	border-bottom: 1px solid #444;
+}
+.e-caseTitle-text {
+	position: absolute;
+	left: 15px;
+	top: 4px;
+	padding: 1px 5px 3px;
+	font-weight: bold;
+	background: #fff;
+}
+
+.e-test {
+	margin: 0 0 5px;
+	background: #ced5db;
+	border-radius: 2px;
+}
+.e-test:hover {
+	background: #d6dde3;
+}
+.e-test_open:hover {
+	background: #ced5db;
+}
+.e-test_failed,
+.e-test_open.e-test_failed:hover {
+	background: #debdbd;
+}
+.e-test_failed:hover {
+	background: #e6c5c5;
+}
+.e-test-head {
+	padding: 6px 20px 7px;
+	cursor: pointer;
+}
+.e-test_open > .e-test-head {
+	border-bottom: 2px solid #fff;
+}
+.e-test-head > span {
+	font-weight: bold;
+}
+.e-test-head-title,
+.e-test-head-passed {
+	color: #336688;
+}
+.e-test_failed .e-test-head-title,
+.e-test-head-failed {
+	color: #993333;
+}
+
+.e-assertsList {
+	display: none;
+	padding: 0 10px 10px;
+}
+.e-test_open > .e-assertsList {
+	display: block;
+}
+.e-assert {
+	position: relative;
+	margin: 10px 0 0;
+	padding: 5px;
+	background: #e5e9ec;
+	border-radius: 2px;
+}
+.e-test_failed .e-assert {
+	background: #eedcdc;
+}
+.e-assert-inner {
+	padding: 6px 12px 7px;
+	border-left: 5px solid;
+}
+.e-assert_okay > .e-assert-inner {
+	color: #336688;
+	border-color: #62778d;
+}
+.e-assert_failure > .e-assert-inner,
+.e-assert_error > .e-assert-inner {
+	color: #993333;
+	border-color: #b06b6b;
+}
+.e-assert_info > .e-assert-inner {
+	color: #444;
+	border-color: #aaa;
+}
+.e-assert_warning > .e-assert-inner {
+	color: #9e6922;
+	border-color: #e5c375;
+}
+.e-assert-message {
+	word-wrap: break-word;
+}
+.e-assert-table td {
+	padding: 6px 0 0;
+}
+.e-assert_okay .e-assert-table {
+	color: #777;
+}
+.e-assert_failure .e-assert-expected {
+	color: #336688;
+}
+.e-assert_failure .e-assert-actual {
+	color: #993333;
+}
+.e-assert_failure .e-assert-diff {
+	color: #222;
+}
+.e-assert-titleCell {
+	font-weight: bold;
+	text-align: right;
+}
+.e-assert pre {
+	margin: 0;
+	padding: 0 0 0 8px;
+	font-size: 13px;
+	line-height: 15px;
+	font-family: Consolas, monospace;
+}
+.e-assert ins {
+	color: #336688;
+	text-decoration: none;
+	background: #ced5db;
+}
+.e-assert del {
+	color: #993333;
+	text-decoration: none;
+	background: #debdbd;
+}

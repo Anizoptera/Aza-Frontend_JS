@@ -1,5 +1,5 @@
 
-define(["jquery"], function($, undefined)
+define(["jquery", "./browser/Detector"], function($, Detector, undefined)
 {
 	var Aza = {},
 
@@ -1120,17 +1120,15 @@ define(["jquery"], function($, undefined)
 			&& typeof obj === "object"
 			&& typeof obj.length === "number"
 			&& typeof obj.callee === "function"
-			&& toString.call(obj) === (Aza.browser.opera || Aza.browser.msie ? "[object Object]" : "[object Arguments]")
+			&& toString.call(obj) === (Detector.browser.opera || Detector.browser.msie ? "[object Object]" : "[object Arguments]")
 		) {
 			// В объектах Arguments форычиться могут только ключи данных (т.е. 0,1,2,... - как в обычном массиве).
 			// length и callee не попадают в for даже несмотря на то, что они вроде бы как собственные:
 			// arguments.hasOwnProperty("length") // true
 			// arguments.hasOwnProperty("callee") // true
-			for (var key in obj) {
-				if (!/^\d+$/.test(key)) {
+			for (var key in obj)
+				if (!/^\d+$/.test(key))
 					return false;
-				}
-			}
 
 			// Выполняем проверку на возможность передачи проверяемого объекта в качестве Arguments.
 			// Если объект не может быть передан в качестве Arguments, возникнет TypeError.
@@ -1139,7 +1137,7 @@ define(["jquery"], function($, undefined)
 					return !!arguments;
 				}).apply(null, obj);
 			}
-			catch (e) { }
+			catch (e) {}
 		}
 
 		return false;

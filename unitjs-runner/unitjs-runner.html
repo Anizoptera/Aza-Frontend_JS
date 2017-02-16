@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>UnitJS</title>
+	<link href="assets/unitjs-runner.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="l-body j-UnitJS-body">
+
+	<div class="l-header">
+		<div class="l-header-title">UnitJS <span><!-- description may be here --></span></div>
+		<div class="l-header-menu">
+			<table>
+				<tr>
+					<td class="l-header-menuLeft">
+						<a class="l-header-item j-runAllBtn" href="#RunAll">Run all</a>
+					</td>
+					<td class="l-header-menuDivider"></td>
+					<td class="l-header-menuRight j-menu"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="info" class="l-info">
+		Tests completed in <span class="j-timer">0</span> milliseconds.<br>
+		<span class="j-passedCounter">0</span> tests of <span class="j-totalCounter">0</span>
+		passed, <span class="j-failedCounter">0</span> failed.
+		<div class="l-info-result l-info-result_passed">Passed<i></i></div>
+		<div class="l-info-result l-info-result_failed">Failed<i></i></div>
+	</div>
+
+	<div class="l-content j-content">Choose a test to run or run them all.</div>
+
+</div>
+
+<script>
+	_allTestDeps_ = [
+			"tests/JSLangTest",
+			"tests/jQueryTest",
+
+			"jquery/tests/FormsTest",
+
+			"aza/tests/CoreTest",
+			"aza/tests/ClassTest"
+	];
+</script>
+
+<script src="../_require.js"></script>
+<script src="assets/unitjs-runner.js"></script>
+
+</body>
+</html>
