@@ -1,8 +1,8 @@
 
 define([
 	"jquery","jquery/mainElems",
-	"../ACondition",
-	"../../event/dispatchers/DomDispatcher"], function($, $me, ACondition, DomDispatcher)
+	"../Condition",
+	"../../event/dispatchers/DomDispatcher"], function($, $me, Condition, DomDispatcher)
 {
 	var flagPath = "__RoutingSelectorCondition_used_",
 		condCount = 0;
@@ -11,7 +11,7 @@ define([
 	 * Checks selectors
 	 * @type {*}
 	 */
-	return ACondition.extend(function(params) {
+	return Condition.extend(function(params) {
 		function updateMatched($fragment) {
 			$fragment = $fragment || $.docElem;
 			matched = [];
@@ -32,11 +32,11 @@ define([
 
 		function onDomAdd(e, $fragment) {
 			updateMatched($fragment);
-			api.trigger(ACondition.EV_MIGHT_CHANGED);
+			api.trigger(Condition.EV_MIGHT_CHANGED);
 		}
 
 
-		ACondition.call(this);
+		Condition.call(this);
 
 		params = params.join ? params : [params];
 

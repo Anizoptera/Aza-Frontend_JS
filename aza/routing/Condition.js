@@ -1,7 +1,7 @@
 
 define(["../event/Dispatcher"], function(Dispatcher)
 {
-	var ACondition = Dispatcher.extend(function(params) {
+	var Condition = Dispatcher.extend(function(params) {
 		Dispatcher.call(this);
 
 		/**
@@ -21,8 +21,8 @@ define(["../event/Dispatcher"], function(Dispatcher)
 	 * Event fires when the Condition decides that routing should be re-checked.
 	 * @type {string}
 	 */
-	ACondition.EV_MIGHT_CHANGED = "mightChanged";
+	Condition.EV_MIGHT_CHANGED = "mightChanged";
 
-	return ACondition;
+	return Condition;
 });
 

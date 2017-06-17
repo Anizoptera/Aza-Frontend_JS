@@ -1,5 +1,5 @@
 
-define(["../ACondition"], function(ACondition)
+define(["../Condition"], function(Condition)
 {
 	var REX = /^(!)?(.*?)\/(.*)$/,
 		STAR = "*";
@@ -22,8 +22,8 @@ define(["../ACondition"], function(ACondition)
 	 * @param {string} params - Route condition
 	 * @constructor
 	 */
-	return ACondition.extend(function(params) {
-		ACondition.call(this);
+	return Condition.extend(function(params) {
+		Condition.call(this);
 
 		params = params.join ? params : [params];
 

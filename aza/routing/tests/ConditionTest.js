@@ -2,17 +2,17 @@
 define([
 	"jquery",
 	"unitjs/TestCase",
-	"../Router", "../ACondition",
+	"../Router", "../Condition",
 	"../conditions/SitePartCondition", "../conditions/SelectorCondition"
-], function($, TestCase, Router, ACondition, SitePartCondition, SelectorCondition)
+], function($, TestCase, Router, Condition, SitePartCondition, SelectorCondition)
 {
 	return TestCase.extend("RouteConditions", function()
 	{
 		this.addTest("Basic", 15, function(api) {
 			var router = new Router();
 
-			router.registerCondition("YES", ACondition.extend(function(params) {
-				ACondition.call(this);
+			router.registerCondition("YES", Condition.extend(function(params) {
+				Condition.call(this);
 				api.assertSame(params, 1, "YES: params");
 				this.check = function() {
 					api.addOkay("YES: check");
@@ -20,8 +20,8 @@ define([
 				}
 			}));
 
-			router.registerCondition("NO", ACondition.extend(function(params) {
-				ACondition.call(this);
+			router.registerCondition("NO", Condition.extend(function(params) {
+				Condition.call(this);
 				api.assertSame(params, 2, "NO: params");
 				this.check = function() {
 					api.addOkay("NO: check");

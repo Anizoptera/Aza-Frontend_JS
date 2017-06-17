@@ -2,8 +2,8 @@
 define([
 	"jquery",
 	"../Core", "../Events",
-	"./ACondition"
-], function($, Aza, Events, ACondition)
+	"./Condition"
+], function($, Aza, Events, Condition)
 {
 	return function(router, opts, conditions, handler) {
 		var api = Aza.extend(this, {
@@ -60,7 +60,7 @@ define([
 						ConditionClass.apply(this, [conditions[code]].concat(conditionClasses[code].args));
 					}))();
 
-					condInstances[code].on(ACondition.EV_MIGHT_CHANGED, Aza.proxy(api.check, api));
+					condInstances[code].on(Condition.EV_MIGHT_CHANGED, Aza.proxy(api.check, api));
 				}
 
 		})(router.conditionClasses);
