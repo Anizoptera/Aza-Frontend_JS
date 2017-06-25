@@ -7,6 +7,7 @@ define(["jquery", "./browser/Detector"], function($, Detector, undefined)
 		guid = 1,
 
 		toString = Object.prototype.toString,
+		StringProto = String.prototype,
 		ArrayProto = Array.prototype;
 
 
@@ -763,32 +764,28 @@ define(["jquery", "./browser/Detector"], function($, Detector, undefined)
 	};
 
 	/**
-	 * Аналог Array.slice()
-	 * Возвращает часть массива.
-	 * Оригинальный массив при этом не изменяется.
-	 * Подходит для работы с защищёнными массивами (такими как arguments).
-	 * Также подходит для строк.
+	 * Returns a part of a passed array or a string
+	 * (from 'start' to 'end'; 'end' is not included)
 	 *
 	 * <tt>
-	 *     Aza.slice([1,2,3,4,5], 1, 4)        // [2, 3, 4]
-	 *     Aza.slice("sometext", 1, 4)        // "ome"
+	 *     Aza.slice([1,2,3,4,5], 1, 4)     // [2,3,4]
+	 *     Aza.slice([1,2,3,4,5], -3)       // [3,4,5]
+	 *     Aza.slice("something", 2, 5)     // met
+	 *     Aza.slice("something", -5, 8)    // thin
 	 * </tt>
 	 *
-	 * @param {Array} obj        Массив для обработки
-	 * @param {Number=} start    [opt] Начальный индекс (default=0)
-	 * @param {Number=} end        [opt] Конечный индекс (default=length)
-	 *
-	 * @return {Array} Новый массив
+	 * @param {*[]|string} obj
+	 * @param {number=} start - Start index (default=0)
+	 * @param {number=} end - End index (default=length)
+	 * @returns {*[]|string}
 	 */
 	Aza.slice = function(obj, start, end) {
-		var isString = typeof obj === "string",
-			res = ArrayProto.slice.call(
+		var slice = (typeof obj === "string" ? StringProto : ArrayProto).slice;
+		return slice.call(
 				obj,
 				start || 0,
 				isNaN(end) ? obj.length : end
 			);
-
-		return isString ? res.join("") : res;
 	};
 
 	/**
