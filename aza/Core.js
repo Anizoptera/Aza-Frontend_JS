@@ -296,18 +296,53 @@ define(["jquery", "./browser/Detector"], function($, Detector, undefined)
 	};
 
 	/**
-	 * Парсит JSON-строку
+	 * Parses a JSON-string
 	 *
-	 * @param {String}    data    Строка для парсинга
+	 * The string must be quoted using double quotes.
+	 * <tt>
+	 *  Aza.parseJson('{"key":123}');       // {key: 123}
+	 *  Aza.parseJson('true');              // true
+	 *  Aza.parseJson('"foo"');             // "foo"
+	 *  Aza.parseJson('[1, 5, "false"]');   // [1, 5, "false"]
+	 *  Aza.parseJson('null');              // null
+	 * </tt>
 	 *
-	 * @return {Object}    Объект (либо null, если строка пуста или не содержит JSON-данные)
+	 * @param {string} json
+	 *
+	 * @return {*|undefined} Parsed object, or 'undefined' if the string has wrong format
 	 */
-	Aza.parseJSON = function(data) {
-		try {
-			return $.parseJSON(data);
-		}
-		catch (e) { }
-		return null;
+	Aza.parseJson = function(json) {
+		try { return $.parseJSON(json); }
+		catch (e) { return undefined; }
+	};
+
+	/**
+	 * Parses a JSON-string using evaluation
+	 *
+	 * This approach is less strict and allows such sugar as:
+	 *  - Using single quotes for keys and values.
+	 *  - Using no quotes at all for keys.
+	 *  - Any evaluations inside the string (note that unlike 'eval()',
+	 *    all the computations are gonna be executed within the global scope,
+	 *    so local variables won't be accessible, only global ones will).
+	 * <tt>
+	 *  Aza.parseJsonUnsafe('{"key":123}');         // {key: 123}
+	 *  Aza.parseJsonUnsafe('true');                // true
+	 *  Aza.parseJsonUnsafe('"foo"');               // "foo"
+	 *  Aza.parseJsonUnsafe('[1, 5, "false"]');     // [1, 5, "false"]
+	 *  Aza.parseJsonUnsafe('null');                // null
+	 *  Aza.parseJsonUnsafe('undefined');           // undefined
+	 *  Aza.parseJsonUnsafe('{key:1+1}');           // {key: 2}
+	 *  Aza.parseJsonUnsafe('[1,2,3].join(",")');   // "1,2,3"
+	 * </tt>
+	 *
+	 * @param {string} json
+	 *
+	 * @return {*|undefined} Parsed object, or 'undefined' if the string has wrong format or equals to 'undefined'
+	 */
+	Aza.parseJsonUnsafe = function(json) {
+		try { return Function("return "+json)(); }
+		catch (e) { return undefined; }
 	};
 
 	/**
