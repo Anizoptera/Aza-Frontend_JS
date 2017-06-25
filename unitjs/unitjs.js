@@ -346,7 +346,7 @@ define(function()
 	 */
 	unitjs.dump = function(obj, maxObjectNests, escapeHtml, newLineChar, /* internal */ level, /* internal */ prefix) {
 		function htmlSpecialChars(val) {
-			return escapeHtml ? unitjs.htmlSpecialChars(val) : val;
+			return escapeHtml ? unitjs.encodeHtmlEntities(val) : val;
 		}
 
 		function multiplyString(count, str) {
@@ -381,10 +381,10 @@ define(function()
 				out += unitjs.hd("%(%) [% %]", indent + prefix, typeof obj, type, obj.source + (obj.global ? "g" : "") + (obj.ignoreCase ? "i" : "") + (obj.multiline ? "m" : "")) + newLineChar;
 				break;
 			case type === "Function":
-				out += unitjs.hd("%(%) %", indent + prefix, typeof obj, htmlSpecialChars(str)) + newLineChar;
+				out += unitjs.hd("%(%) %", indent + prefix, typeof obj, encodeHtmlEntities(str)) + newLineChar;
 				break;
 			default:
-				out += unitjs.hd("%(%) %", indent + prefix, typeof obj, htmlSpecialChars(type === "String" ? "\"" + obj + "\"" : obj)) + newLineChar;
+				out += unitjs.hd("%(%) %", indent + prefix, typeof obj, encodeHtmlEntities(type === "String" ? "\"" + obj + "\"" : obj)) + newLineChar;
 
 				if (type === "Object") {
 					if (!maxObjectNests || level < maxObjectNests) {

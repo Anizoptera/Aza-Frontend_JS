@@ -310,37 +310,31 @@ define(["jquery", "./browser/Detector"], function($, Detector, undefined)
 	};
 
 	/**
-	 * Преобразует специальные символы в HTML-сущности
+	 * Converts special characters to HTML entities
+	 * Special chars: &<>"'
 	 *
-	 * @param {String|Object|Array}        val        Строка (объект или массив строк) для преобразования
-	 * @param {Boolean|Number=}            quotes    [opt] Преобразовывать ли кавычки (default=false)
-	 *
-	 * @return {String|Object|Array}
+	 * @param stringToEncode
+	 * @returns {string}
 	 */
-	Aza.htmlSpecialChars = function(val, quotes) {
+	Aza.encodeHtmlEntities = function(stringToEncode) {
 		var div = document.createElement("div");
-		div.appendChild(document.createTextNode(val));
-		val = div.innerHTML;
-
-		if (quotes) {
-			val = val.replace(/'/g, "&#039;").replace(/"/g, "&quot;");
-		}
-
-		return val;
+		div.appendChild(document.createTextNode(stringToEncode));
+		return div.innerHTML.replace(/'/g, "&#039;").replace(/"/g, "&quot;");
 	};
 
 	/**
-	 * Преобразует специальные HTML-сущности обратно в соответствующие символы
+	 * Converts special HTML entities to their applicable characters.
+	 * Does it for all the entities, NOT only for the special ones: &<>"'
 	 *
-	 * @param {String|Object|Array}        val        Строка (объект или массив строк) для преобразования
+	 * @see http://stackoverflow.com/a/1395954/4899346
 	 *
-	 * @return {String|Object|Array}
+	 * @param {string} encodedString
+	 * @returns {string}
 	 */
-	Aza.htmlSpecialCharsDecode = function(val) {
-		var div = document.createElement("div");
-		div.innerHTML = val;
-		val = div.firstChild && div.firstChild.nodeValue;
-		return val || "";
+	Aza.decodeHtmlEntities = function(encodedString) {
+		var textarea = document.createElement("textarea");
+		textarea.innerHTML = encodedString;
+		return textarea.value;
 	};
 
 	/**

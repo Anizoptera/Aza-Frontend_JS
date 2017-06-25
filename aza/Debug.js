@@ -84,7 +84,7 @@ define(["jquery", "./Core"], function($, Aza)
 	 */
 	Debug.dump = function(obj, maxObjectNests, escapeHtml, newLineChar, /* internal */ level, /* internal */ prefix) {
 		function htmlSpecialChars(val) {
-			return escapeHtml ? Aza.htmlSpecialChars(val) : val;
+			return escapeHtml ? Aza.encodeHtmlEntities(val) : val;
 		}
 
 		maxObjectNests = +maxObjectNests || 10;
@@ -112,10 +112,10 @@ define(["jquery", "./Core"], function($, Aza)
 				out += "%(%) [% %]".hd(indent + prefix, typeof obj, type, obj.source + (obj.global ? "g" : "") + (obj.ignoreCase ? "i" : "") + (obj.multiline ? "m" : "")) + newLineChar;
 				break;
 			case type === "Function":
-				out += "%(%) %".hd(indent + prefix, typeof obj, htmlSpecialChars(str)) + newLineChar;
+				out += "%(%) %".hd(indent + prefix, typeof obj, encodeHtmlEntities(str)) + newLineChar;
 				break;
 			default:
-				out += "%(%) %".hd(indent + prefix, typeof obj, htmlSpecialChars(type === "String" ? "\"" + obj + "\"" : obj)) + newLineChar;
+				out += "%(%) %".hd(indent + prefix, typeof obj, encodeHtmlEntities(type === "String" ? "\"" + obj + "\"" : obj)) + newLineChar;
 
 				if (type === "Object") {
 					if (!maxObjectNests || level < maxObjectNests) {
