@@ -204,17 +204,23 @@ define(["jquery", "./browser/Detector"], function($, Detector, undefined)
 	};
 
 	/**
-	 * Adds leading zeros
-	 *
-	 * @param num
-	 * @param len
-	 * @returns {string}
+	 * Pads the string at the beginning with the specified [char] to the specified [length].
 	 */
-	Aza.zeroPad = function(num, len) {
-		num = num + "";
-		return num.length < len
-			? (new Array(len).join("0") + num).slice(-len)
-			: num;
+	Aza.padStart = function(string, length, char) {
+		string = string + "";
+		return string.length < length
+			? new Array(length - string.length + 1).join(char) + string
+			: string;
+	};
+
+	/**
+	 * Pads the string at the end with the specified [char] to the specified [length].
+	 */
+	Aza.padEnd = function(string, length, char) {
+		string = string + "";
+		return string.length < length
+			? string + new Array(length - string.length + 1).join(char)
+			: string;
 	};
 
 	/**
